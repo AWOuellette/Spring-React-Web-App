@@ -5,8 +5,8 @@ import ThirdComponent from './components/LearningComponents/ThirdComponent'
 import Counter from './components/counter/Counter'
 import logo from './logo.svg';
 import './App.css';
-import TodoApp from './components/todo/TodoApp'
- 
+import TodoApp from './components/todo/TodoApp.jsx'
+
 class App extends Component {
   render() {
     return (
