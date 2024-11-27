@@ -14,9 +14,46 @@ class TodoApp extends Component {
                         <Route path="/" element={<LoginComponentWithNavigation />} />
                         <Route path="/login" element={<LoginComponentWithNavigation />} />
                         <Route path="/welcome/:name" element={<WelcomeComponentWithParams />} />
+                        <Route path="/todos" element={<ListTodosComponent />} />
                         <Route path="*" element={<ErrorComponent />} />
                     </Routes>
                 </Router>
+            </div>
+        )
+    }
+}
+
+class ListTodosComponent extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            todos: [
+                {id: 1, description: 'Learn AWS', done: false, targetDate: new Date()},
+                {id: 2, description: 'Learn DevOps', done: false, targetDate: new Date()},
+                {id: 3, description: 'Learn Full Stack Development', done: false, targetDate: new Date()}
+            ]
+        }
+    }
+    render() {
+        return (
+            <div>
+                <h1>List of Todos</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.todos.map(todo => (
+                            <tr key={todo.id}>
+                                <td>{todo.id}</td>
+                                <td>{todo.description}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         )
     }
