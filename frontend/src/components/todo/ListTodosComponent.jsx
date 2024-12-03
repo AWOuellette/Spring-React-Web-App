@@ -11,6 +11,7 @@ class ListTodosComponent extends Component {
         }
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
         this.refreshTodos = this.refreshTodos.bind(this);
+        this.updateTodoClicked = this.updateTodoClicked.bind(this);
     }
 
     componentDidMount() {
@@ -32,6 +33,10 @@ class ListTodosComponent extends Component {
         })
     }
 
+    updateTodoClicked(id) {
+        this.props.navigate(`/todo/${id}`)
+    }
+
     render() {
         return (
             <div>
@@ -44,6 +49,7 @@ class ListTodosComponent extends Component {
                                 <th>Description</th>
                                 <th>Is Done?</th>
                                 <th>Target Date</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -53,6 +59,7 @@ class ListTodosComponent extends Component {
                                     <td>{todo.description}</td>
                                     <td>{todo.done.toString()}</td>
                                     <td>{todo.targetDate.toString()}</td>
+                                    <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
                                     <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                 </tr>
                             ))}
