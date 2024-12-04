@@ -16,6 +16,18 @@ public class TodoHardCodedService {
         todosList.add(new Todo(++idCounter, "Andrew O", "Learn Full Stack Development", new Date(), false));
     }
 
+    public Todo save(Todo todo){
+        if(todo.getId() == -1 || todo.getId() == 0){
+            todo.setId(++idCounter);
+            todosList.add(todo);
+        }else{
+            deleteById(todo.getId());
+            todosList.add(todo);
+        }
+
+        return todo;
+    }
+
     public List<Todo> findALl(){
         return todosList;
     }
