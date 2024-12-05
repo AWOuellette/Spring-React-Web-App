@@ -6,7 +6,7 @@ class LoginComponent extends Component {
     constructor (props) {
         super(props)
         this.state = {
-            username: 'user',
+            username: 'andrew',
             password: '',
             hasLoginFailed: false,
             showSuccessMessage: false
@@ -21,9 +21,21 @@ class LoginComponent extends Component {
     }
 
     loginClicked() {
-        AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)
-        .then(() => {
-            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+        // Basic Authentication
+        // AuthenticationService.executeBasicAuthenticationService(this.state.username, this.state.password)
+        // .then(() => {
+        //     AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+        //     this.props.navigate(`/welcome/${this.state.username}`)
+        // })
+        // .catch(() => {
+        //     this.setState({showSuccessMessage:false})
+        //     this.setState({hasLoginFailed:true})
+        // })
+
+        // JWT Authentication
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password)
+        .then((response) => {
+            AuthenticationService.registerSuccessfulLoginForJwt(this.state.username, response.data.token);
             this.props.navigate(`/welcome/${this.state.username}`)
         })
         .catch(() => {
